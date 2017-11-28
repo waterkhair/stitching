@@ -7,8 +7,18 @@
     "lint": "eslint ./",
     "start": ""
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/waterkhair/stitching.git"
+  },
+  "keywords": [
+    "stitching",
+    "mongodb",
+    "stitch"
+  ],
   "author": "Jesus Barajas",
   "license": "ISC",
+  "homepage": "https://github.com/waterkhair/stitching",
   "dependencies": {
     "mongodb-stitch": "2.2.0"
   },
