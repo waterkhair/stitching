@@ -1,0 +1,33 @@
+{
+    "env": {
+        "commonjs": true,
+        "es6": true,
+        "node": true
+    },
+    "extends": "eslint:all",
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "allowImportExportEverywhere": false,
+        "codeFrame": false,
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true
+        },
+        "rules": {
+          "strict": 0
+        },
+        "sourceType": "module"
+    },
+    "rules": {
+        "camelcase": "off",
+        "dot-location": "off",
+        "linebreak-style": "off",
+        "max-len": "off",
+        "max-params": ["error", 5],
+        "object-curly-newline": "off",
+        "one-var": "off",
+        "padded-blocks": ["error", "never"],
+        "quotes": ["error", "double"],
+        "quote-props": "off",
+        "strict": "off"
+    }
+}

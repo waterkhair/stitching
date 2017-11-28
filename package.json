@@ -1,0 +1,19 @@
+{
+  "name": "stitching",
+  "version": "0.0.1",
+  "description": "A NodeJS module to use MongoDB Stitch in an easy way.",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint ./",
+    "start": ""
+  },
+  "author": "Jesus Barajas",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb-stitch": "2.2.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.0.2",
+    "eslint": "4.12.0"
+  }
+}
