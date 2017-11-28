@@ -7,15 +7,12 @@
     "extends": "eslint:all",
     "parser": "babel-eslint",
     "parserOptions": {
-        "allowImportExportEverywhere": false,
-        "codeFrame": false,
         "ecmaFeatures": {
             "experimentalObjectRestSpread": true
         },
         "rules": {
           "strict": 0
-        },
-        "sourceType": "module"
+        }
     },
     "rules": {
         "camelcase": "off",

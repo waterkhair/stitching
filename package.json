@@ -13,7 +13,7 @@
     "mongodb-stitch": "2.2.0"
   },
   "devDependencies": {
-    "babel-eslint": "^8.0.2",
+    "babel-eslint": "8.0.2",
     "eslint": "4.12.0"
   }
 }
