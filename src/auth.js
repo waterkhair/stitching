@@ -63,7 +63,7 @@ const updateMetadata = (client, db, metadataCollection) => (metadata) => new Pro
                     .collection(metadataCollection)
                     .updateOne({
                         owner_id: authId
-                    }, {$set: {...metadata}}, {upsert: true})
+                    }, {$set: metadata}, {upsert: true})
                     .then((res) => {
                         if (res.result.length === COUNT.ONE) {
                             resolve(MESSAGES.AUTH.METADATA_UPDATED);

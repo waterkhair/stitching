@@ -18,7 +18,15 @@ const auth = () => {
     }
 
     return {
-        ...authObj
+        authenticate: authObj.authenticate,
+        emailConfirm: authObj.emailConfirm,
+        getUserCredentials: authObj.getUserCredentials,
+        login: authObj.login,
+        logout: authObj.logout,
+        passwordReset: authObj.passwordReset,
+        registerUser: authObj.registerUser,
+        sendPasswordReset: authObj.sendPasswordReset,
+        updateMetadata: authObj.updateMetadata
     };
 };
 const client = () => {
@@ -26,18 +34,14 @@ const client = () => {
         throw new Error(MESSAGES.STITCHING.STITCHING_NOT_INITIALIZED);
     }
 
-    return {
-        ...clientObj
-    };
+    return clientObj;
 };
 const db = () => {
     if (!dbObj) {
         throw new Error(MESSAGES.STITCHING.STITCHING_NOT_INITIALIZED);
     }
 
-    return {
-        ...dbObj
-    };
+    return dbObj;
 };
 const connect = (appId, baseUrl, cluster, database, metadataCollection) => {
     if (appId && baseUrl && cluster && database) {

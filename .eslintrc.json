@@ -7,9 +7,6 @@
     "extends": "eslint:all",
     "parser": "babel-eslint",
     "parserOptions": {
-        "ecmaFeatures": {
-            "experimentalObjectRestSpread": true
-        },
         "rules": {
           "strict": 0
         }
