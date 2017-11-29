@@ -47,3 +47,10 @@ export const connect = (appId, baseUrl, cluster, database, metadataCollection) =
         authObj = initAuth(clientObj, dbObj, metadataCollection);
     }
 };
+
+export default {
+    auth,
+    client,
+    connect,
+    db
+};
