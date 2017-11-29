@@ -1,9 +1,7 @@
 // Modules
+const {MESSAGES} = require("./common");
 const initAuth = require("./auth");
 const initConnection = require("./connect");
-
-// Constants
-const {MESSAGES} = require("./common");
 
 // Helpers
 let authObj = null;
@@ -11,38 +9,36 @@ let clientObj = null;
 let connectionObj = null;
 let dbObj = null;
 
-// Methods
 const auth = () => {
     if (!authObj) {
         throw new Error(MESSAGES.STITCHING.STITCHING_NOT_INITIALIZED);
     }
 
     return {
-        authenticate: authObj.authenticate,
-        emailConfirm: authObj.emailConfirm,
-        getUserCredentials: authObj.getUserCredentials,
-        login: authObj.login,
-        logout: authObj.logout,
-        passwordReset: authObj.passwordReset,
-        registerUser: authObj.registerUser,
-        sendPasswordReset: authObj.sendPasswordReset,
-        updateMetadata: authObj.updateMetadata
+        ...authObj
     };
 };
+
 const client = () => {
     if (!clientObj) {
         throw new Error(MESSAGES.STITCHING.STITCHING_NOT_INITIALIZED);
     }
 
-    return clientObj;
+    return {
+        ...clientObj
+    };
 };
+
 const db = () => {
     if (!dbObj) {
         throw new Error(MESSAGES.STITCHING.STITCHING_NOT_INITIALIZED);
     }
 
-    return dbObj;
+    return {
+        ...dbObj
+    };
 };
+
 const connect = (appId, baseUrl, cluster, database, metadataCollection) => {
     if (appId && baseUrl && cluster && database) {
         connectionObj = initConnection(appId, baseUrl, cluster, database);

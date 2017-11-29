@@ -1,11 +1,11 @@
-// Constants
+// Modules
 const {COUNT, INDEXES, MESSAGES, PROVIDERS} = require("./common");
 
-// Methods
-const authenticate = (client) => (provider) => {
+// Method creatorss
+const authenticateCreator = (client) => (provider) => {
     client.authenticate(provider);
 };
-const emailConfirm = (client) => (tokenId, token) => new Promise((resolve, reject) => {
+const emailConfirmCreator = (client) => (tokenId, token) => new Promise((resolve, reject) => {
     if (token && tokenId) {
         client.auth
             .provider(PROVIDERS.USERPASS)
@@ -20,7 +20,7 @@ const emailConfirm = (client) => (tokenId, token) => new Promise((resolve, rejec
         reject(new Error(MESSAGES.AUTH.BAD_EMAIL_CONFIRMATION));
     }
 });
-const registerUser = (client) => (email, password) => new Promise((resolve, reject) => {
+const registerUserCreator = (client) => (email, password) => new Promise((resolve, reject) => {
     client
         .register(email, password)
         .then(() => {
@@ -28,7 +28,7 @@ const registerUser = (client) => (email, password) => new Promise((resolve, reje
         })
         .catch(reject);
 });
-const passwordReset = (client) => (tokenId, token, newPassword, confirmNewPassword) => new Promise((resolve, reject) => {
+const passwordResetCreator = (client) => (tokenId, token, newPassword, confirmNewPassword) => new Promise((resolve, reject) => {
     if (newPassword && confirmNewPassword) {
         if (newPassword === confirmNewPassword) {
             client.auth
@@ -45,7 +45,7 @@ const passwordReset = (client) => (tokenId, token, newPassword, confirmNewPasswo
         reject(new Error(MESSAGES.AUTH.INVALID_PASSWORD));
     }
 });
-const sendPasswordReset = (client) => (email) => new Promise((resolve, reject) => {
+const sendPasswordResetCreator = (client) => (email) => new Promise((resolve, reject) => {
     client.auth
         .provider(PROVIDERS.USERPASS)
         .sendPasswordReset(email)
@@ -54,16 +54,14 @@ const sendPasswordReset = (client) => (email) => new Promise((resolve, reject) =
         })
         .catch(reject);
 });
-const updateMetadata = (client, db, metadataCollection) => (metadata) => new Promise((resolve, reject) => {
+const updateMetadataCreator = (client, db, metadataCollection) => (metadata) => new Promise((resolve, reject) => {
     if (client) {
         const authId = client.authedId();
         if (authId) {
             if (metadataCollection) {
                 db
                     .collection(metadataCollection)
-                    .updateOne({
-                        owner_id: authId
-                    }, {$set: metadata}, {upsert: true})
+                    .updateOne({owner_id: authId}, {$set: {...metadata}}, {upsert: true})
                     .then((res) => {
                         if (res.result.length === COUNT.ONE) {
                             resolve(MESSAGES.AUTH.METADATA_UPDATED);
@@ -82,7 +80,7 @@ const updateMetadata = (client, db, metadataCollection) => (metadata) => new Pro
         reject(new Error(MESSAGES.CLIENT.CLIENT_NOT_INITIALIZED));
     }
 });
-const getUserCredentials = (client, db, metadataCollection) => () => new Promise((resolve, reject) => {
+const getUserCredentialsCreator = (client, db, metadataCollection) => () => new Promise((resolve, reject) => {
     if (client) {
         const authId = client.authedId();
         if (authId) {
@@ -135,10 +133,10 @@ const getUserCredentials = (client, db, metadataCollection) => () => new Promise
         reject(new Error(MESSAGES.CLIENT.CLIENT_NOT_INITIALIZED));
     }
 });
-const login = (client, db, metadataCollection) => (email, password) => new Promise((resolve, reject) => {
+const loginCreator = (client, db, metadataCollection) => (email, password) => new Promise((resolve, reject) => {
     client.login(email, password)
         .then(() => {
-            getUserCredentials(client, db, metadataCollection)()
+            getUserCredentialsCreator(client, db, metadataCollection)()
                 .then(resolve)
                 .catch(reject);
         })
@@ -146,16 +144,16 @@ const login = (client, db, metadataCollection) => (email, password) => new Promi
             reject(new Error(MESSAGES.AUTH.WRONG_EMAIL_PASSWORD));
         });
 });
-const logout = (client) => () => client.logout();
+const logoutCreator = (client) => () => client.logout();
 
 module.exports = (client, db, metadataCollection) => ({
-    authenticate: authenticate(client),
-    emailConfirm: emailConfirm(client),
-    getUserCredentials: getUserCredentials(client, db, metadataCollection),
-    login: login(client, db, metadataCollection),
-    logout: logout(client),
-    passwordReset: passwordReset(client),
-    registerUser: registerUser(client),
-    sendPasswordReset: sendPasswordReset(client),
-    updateMetadata: updateMetadata(client, db, metadataCollection)
+    authenticate: authenticateCreator(client),
+    emailConfirm: emailConfirmCreator(client),
+    getUserCredentials: getUserCredentialsCreator(client, db, metadataCollection),
+    login: loginCreator(client, db, metadataCollection),
+    logout: logoutCreator(client),
+    passwordReset: passwordResetCreator(client),
+    registerUser: registerUserCreator(client),
+    sendPasswordReset: sendPasswordResetCreator(client),
+    updateMetadata: updateMetadataCreator(client, db, metadataCollection)
 });
