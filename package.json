@@ -1,6 +1,6 @@
 {
   "name": "stitching",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A NodeJS module to use MongoDB Stitch in an easy way.",
   "main": "./lib/src/index.js",
   "scripts": {
