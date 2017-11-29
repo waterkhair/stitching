@@ -2,11 +2,10 @@
   "name": "stitching",
   "version": "0.0.6",
   "description": "A NodeJS module to use MongoDB Stitch in an easy way.",
-  "main": "./lib/src/index.js",
+  "main": "index.js",
   "scripts": {
-    "build": "babel --plugins transform-object-rest-spread ./src/**/* -d lib",
-    "lint": "eslint ./",
-    "start": ""
+    "build": "babel --plugins transform-object-rest-spread src -d lib",
+    "lint": "eslint ./"
   },
   "repository": {
     "type": "git",
