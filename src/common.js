@@ -1,12 +1,12 @@
-module.exports.COUNT = {
+export const COUNT = {
     ONE: 1
 };
 
-module.exports.INDEXES = {
+export const INDEXES = {
     FIRST: 0
 };
 
-module.exports.MESSAGES = {
+export const MESSAGES = {
     AUTH: {
         BAD_EMAIL_CONFIRMATION: "Bad email confirmation",
         EMAIL_CONFIRMED: "Email confirmed",
@@ -29,7 +29,7 @@ module.exports.MESSAGES = {
     }
 };
 
-module.exports.PROVIDERS = {
+export const PROVIDERS = {
     FACEBOOK: "facebook",
     GOOGLE: "google",
     TWITTER: "twitter",

@@ -1,6 +1,6 @@
 // Modules
-const {MESSAGES} = require("./common");
-const {StitchClient} = require("mongodb-stitch");
+import {MESSAGES} from "./common";
+import {StitchClient} from "mongodb-stitch";
 
 // Methods
 const callNamedPipelineCreator = (client) => (name, args = "") => new Promise((resolve, reject) => {
@@ -27,7 +27,7 @@ const callNamedPipelineCreator = (client) => (name, args = "") => new Promise((r
     }
 });
 
-module.exports = (appId, baseUrl, cluster, database) => {
+export default (appId, baseUrl, cluster, database) => {
     const client = new StitchClient(appId, {baseUrl});
     const db = client.service("mongodb", cluster).db(database);
 

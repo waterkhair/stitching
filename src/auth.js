@@ -1,5 +1,5 @@
 // Modules
-const {COUNT, INDEXES, MESSAGES, PROVIDERS} = require("./common");
+import {COUNT, INDEXES, MESSAGES, PROVIDERS} from "./common";
 
 // Method creatorss
 const authenticateCreator = (client) => (provider) => {
@@ -146,7 +146,7 @@ const loginCreator = (client, db, metadataCollection) => (email, password) => ne
 });
 const logoutCreator = (client) => () => client.logout();
 
-module.exports = (client, db, metadataCollection) => ({
+export default (client, db, metadataCollection) => ({
     authenticate: authenticateCreator(client),
     emailConfirm: emailConfirmCreator(client),
     getUserCredentials: getUserCredentialsCreator(client, db, metadataCollection),
