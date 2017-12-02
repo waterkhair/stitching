@@ -63,7 +63,7 @@ const updateMetadataCreator = (client, db, metadataCollection) => (metadata) => 
                     .collection(metadataCollection)
                     .updateOne({owner_id: authId}, {$set: {...metadata}}, {upsert: true})
                     .then((res) => {
-                        if (res.result.length === COUNT.ONE) {
+                        if (res.matchedCount === COUNT.ONE) {
                             resolve(MESSAGES.AUTH.METADATA_UPDATED);
                         } else {
                             reject(new Error(MESSAGES.AUTH.METADATA_DOES_NOT_EXISTS));
@@ -106,6 +106,7 @@ const getUserCredentialsCreator = (client, db, metadataCollection) => () => new 
                             db
                                 .collection(metadataCollection)
                                 .find({})
+                                .execute()
                                 .then((res) => {
                                     if (res && res.length === COUNT.ONE) {
                                         metadata = Object.assign({}, metadata, res[INDEXES.FIRST]);
