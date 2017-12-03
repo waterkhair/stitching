@@ -77,14 +77,14 @@ VALID
 ### Connecting to MongoDB Stitch using Stitching
 
 ```js
-var STITCH_CONFIG = {
+const STITCH_CONFIG = {
     APP_ID: "example-<random_value>",
     CLUSTER: "mongodb-atlas",
     DB: "example",
     ENDPOINT: "https://stitch.mongodb.com",
     METADATA: "metadata" // Optional collection name to handle user metadata (I.E. name, dob, profile_image, etc)
 };
-var stitching = require("stitching");
+const stitching = require("stitching");
 
 stitching.connect(STITCH_CONFIG.APP_ID, STITCH_CONFIG.ENDPOINT, STITCH_CONFIG.CLUSTER, STITCH_CONFIG.DB, STITCH_CONFIG.METADATA);
 ```
@@ -96,10 +96,10 @@ After you connect your `Stitching`, you can access auth (`Stitching Authenticati
 To register a new user (email/password):
 
 ```js
-var stitching = require("stitching");
+const stitching = require("stitching");
 
-var email = "email@email.com";
-var password = "Password1!";
+const email = "email@email.com";
+const password = "Password1!";
 
 stitching
     .auth()
@@ -115,11 +115,11 @@ stitching
 To confirm an email you need to setup `Stitching` on the `Email Confirm URL` to receive a Token/Token ID pair.
 
 ```js
-var stitching = require("stitching");
+const stitching = require("stitching");
 
 // Logic to retrieve the Token/Token ID params from the Email Confirm URL
-var token = "<TOKEN>";
-var tokenId = "<TOKEN_ID>";
+const token = "<TOKEN>";
+const tokenId = "<TOKEN_ID>";
 
 stitching
     .auth()
@@ -133,9 +133,9 @@ stitching
 In order to reset a password, first we need to sent a `Reset Password Email`:
 
 ```js
-var stitching = require("stitching");
+const stitching = require("stitching");
 
-var email = "email@email.com";
+const email = "email@email.com";
 
 stitching
     .auth()
@@ -147,13 +147,13 @@ stitching
 After a `Reset Password Email URL` is accessed through the link provided on the `Reset Password Email`, we need to set the new password:
 
 ```js
-var stitching = require("stitching");
+const stitching = require("stitching");
 
 // Logic to retrieve the Token/Token ID params from the Reset Password Email URL
-var token = "<TOKEN>";
-var tokenId = "<TOKEN_ID>";
+const token = "<TOKEN>";
+const tokenId = "<TOKEN_ID>";
 
-var newPassword = "AnotherPassword1!";
+const newPassword = "AnotherPassword1!";
 
 stitching
     .auth()
@@ -167,10 +167,10 @@ stitching
 After a registered email is confirmed, we can login:
 
 ```js
-var stitching = require("stitching");
+const stitching = require("stitching");
 
-var email = "email@email.com";
-var password = "Password1!";
+const email = "email@email.com";
+const password = "Password1!";
 
 stitching
     .auth()
@@ -187,7 +187,7 @@ stitching
 Whenever we want to logout:
 
 ```js
-var stitching = require("stitching");
+const stitching = require("stitching");
 
 stitching
     .auth()
@@ -200,9 +200,9 @@ stitching
 Whenever we want to update the current user metadata:
 
 ```js
-var stitching = require("stitching");
+const stitching = require("stitching");
 
-var metadata = {
+const metadata = {
     name: "John Doe",
     address: "123 Abc Street"
 };
