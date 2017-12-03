@@ -4,7 +4,7 @@ A NodeJS module to use [MongoDB Stitch](https://www.mongodb.com/cloud/stitch) Au
 ## Documentation
 
 - [StitchingJS.com](http://stitchingjs.com/)
-- [MongoDB Stitch Documnetation](https://docs.mongodb.com/stitch/)
+- [MongoDB Stitch Documentation](https://docs.mongodb.com/stitch/)
 
 ## Support
 
