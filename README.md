@@ -195,9 +195,9 @@ stitching
     .catch(console.error);
 ```
 
-### Update metadata
+### Update user metadata
 
-Whenever we want to logout:
+Whenever we want to update the current user metadata:
 
 ```js
 var stitching = require("stitching");
