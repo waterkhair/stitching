@@ -139,7 +139,7 @@ const email = "email@email.com";
 
 stitching
     .auth()
-    .passwordReset(tokenId, token, newPassword)
+    .sendPasswordReset(email)
     .then(console.log)
     .catch(console.error);
 ```
