@@ -15,7 +15,6 @@ export const MESSAGES = {
         METADATA_DOES_NOT_EXISTS: "Metadata does not exists",
         METADATA_UPDATED: "Metadata updated",
         NO_METADATA_COLLECTION: "No metadata collection was provided",
-        PASSWORDS_DOES_NOT_MATCH: "Passwords does not match",
         PASSWORD_RESETED: "Password reseted",
         USER_REGISTERED: "User registered",
         WRONG_EMAIL_PASSWORD: "Wrong email/password"

@@ -28,19 +28,15 @@ const registerUserCreator = (client) => (email, password) => new Promise((resolv
         })
         .catch(reject);
 });
-const passwordResetCreator = (client) => (tokenId, token, newPassword, confirmNewPassword) => new Promise((resolve, reject) => {
-    if (newPassword && confirmNewPassword) {
-        if (newPassword === confirmNewPassword) {
-            client.auth
-                .provider(PROVIDERS.UserPass)
-                .passwordReset(tokenId, token, newPassword)
-                .then(() => {
-                    resolve(MESSAGES.AUTH.PASSWORD_RESETED);
-                })
-                .catch(reject);
-        } else {
-            reject(new Error(MESSAGES.AUTH.PASSWORDS_DOES_NOT_MATCH));
-        }
+const passwordResetCreator = (client) => (tokenId, token, newPassword) => new Promise((resolve, reject) => {
+    if (newPassword) {
+        client.auth
+            .provider(PROVIDERS.UserPass)
+            .passwordReset(tokenId, token, newPassword)
+            .then(() => {
+                resolve(MESSAGES.AUTH.PASSWORD_RESETED);
+            })
+            .catch(reject);
     } else {
         reject(new Error(MESSAGES.AUTH.INVALID_PASSWORD));
     }
