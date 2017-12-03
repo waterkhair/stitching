@@ -8,7 +8,7 @@ const authenticateCreator = (client) => (provider) => {
 const emailConfirmCreator = (client) => (tokenId, token) => new Promise((resolve, reject) => {
     if (token && tokenId) {
         client.auth
-            .provider(PROVIDERS.USERPASS)
+            .provider(PROVIDERS.UserPass)
             .emailConfirm(tokenId, token)
             .then(() => {
                 resolve(MESSAGES.AUTH.EMAIL_CONFIRMED);
@@ -32,7 +32,7 @@ const passwordResetCreator = (client) => (tokenId, token, newPassword, confirmNe
     if (newPassword && confirmNewPassword) {
         if (newPassword === confirmNewPassword) {
             client.auth
-                .provider(PROVIDERS.USERPASS)
+                .provider(PROVIDERS.UserPass)
                 .passwordReset(tokenId, token, newPassword)
                 .then(() => {
                     resolve(MESSAGES.AUTH.PASSWORD_RESETED);
@@ -47,7 +47,7 @@ const passwordResetCreator = (client) => (tokenId, token, newPassword, confirmNe
 });
 const sendPasswordResetCreator = (client) => (email) => new Promise((resolve, reject) => {
     client.auth
-        .provider(PROVIDERS.USERPASS)
+        .provider(PROVIDERS.UserPass)
         .sendPasswordReset(email)
         .then(() => {
             resolve(`${MESSAGES.AUTH.EMAIL_SENT_TO} ${email}`);

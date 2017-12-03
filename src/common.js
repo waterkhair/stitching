@@ -30,8 +30,8 @@ export const MESSAGES = {
 };
 
 export const PROVIDERS = {
-    FACEBOOK: "facebook",
-    GOOGLE: "google",
-    TWITTER: "twitter",
-    USERPASS: "userpass"
+    Facebook: "facebook",
+    Google: "google",
+    Twitter: "twitter",
+    UserPass: "userpass"
 };

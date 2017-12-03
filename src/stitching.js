@@ -1,5 +1,5 @@
 // Modules
-import {MESSAGES} from "./common";
+import {MESSAGES, PROVIDERS} from "./common";
 import initAuth from "./auth";
 import initConnection from "./connect";
 
@@ -48,9 +48,12 @@ export const connect = (appId, baseUrl, cluster, database, metadataCollection) =
     }
 };
 
+export const providers = PROVIDERS;
+
 export default {
     auth,
     client,
     connect,
-    db
+    db,
+    providers: PROVIDERS
 };
