@@ -21,7 +21,7 @@ $ npm install stitching
 
 For now, the plan is to give an easy way to manage [Authentication](https://docs.mongodb.com/stitch/authentication/) using [MongoDB Stitch](https://www.mongodb.com/cloud/stitch), but the real goal is to make everything else easier.
 
-### Setting up Stitching.
+### Setting up Stitching
 
 Before using Stitching, you need to setup a `MongoDB Stitch` app. To get started, you can visit [Getting Started](https://docs.mongodb.com/stitch/getting-started/) page and follow the instructions. After you finish setting up a `MongoDB Stitch` app, you can use your APP ID to handle `Authentication`.
 
@@ -101,8 +101,7 @@ const stitching = require("stitching");
 const email = "email@email.com";
 const password = "Password1!";
 
-stitching
-    .auth()
+stitching.auth
     .registerUser(email, password)
     .then(() => {
         console.log(`An email was sent to ${email}. Please confirm the email by accessing the link provided.`);
@@ -121,8 +120,7 @@ const stitching = require("stitching");
 const token = "<TOKEN>";
 const tokenId = "<TOKEN_ID>";
 
-stitching
-    .auth()
+stitching.auth
     .emailConfirm(tokenId, token)
     .then(console.log)
     .catch(console.error);
@@ -137,8 +135,7 @@ const stitching = require("stitching");
 
 const email = "email@email.com";
 
-stitching
-    .auth()
+stitching.auth
     .sendPasswordReset(email)
     .then(console.log)
     .catch(console.error);
@@ -155,8 +152,7 @@ const tokenId = "<TOKEN_ID>";
 
 const newPassword = "AnotherPassword1!";
 
-stitching
-    .auth()
+stitching.auth
     .passwordReset(tokenId, token, newPassword)
     .then(console.log)
     .catch(console.error);
@@ -172,8 +168,7 @@ const stitching = require("stitching");
 const email = "email@email.com";
 const password = "Password1!";
 
-stitching
-    .auth()
+stitching.auth
     .login(email, password)
     .then((credentials) => {
         // If we setup metadata collection, we log it to console
@@ -189,8 +184,7 @@ Whenever we want to logout:
 ```js
 const stitching = require("stitching");
 
-stitching
-    .auth()
+stitching.auth
     .logout()
     .catch(console.error);
 ```
@@ -207,8 +201,7 @@ const metadata = {
     address: "123 Abc Street"
 };
 
-stitching
-    .auth()
+stitching.auth
     .updateMetadata(metadata)
     .then(console.log)
     .catch(console.error);
