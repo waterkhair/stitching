@@ -103,16 +103,17 @@ VALID
 Before using any `Stitching` functionality, lets connect to our `MongoDB Stitch` app.
 
 ```js
-const STITCH_CONFIG = {
-    APP_ID: "example-<random_value>",
-    CLUSTER: "mongodb-atlas",
-    DB: "example",
-    ENDPOINT: "https://stitch.mongodb.com",
-    METADATA: "metadata" // Optional collection name to handle user metadata (I.E. name, dob, profile_image, etc)
-};
 const stitching = require("stitching");
 
-stitching.connect(STITCH_CONFIG.APP_ID, STITCH_CONFIG.ENDPOINT, STITCH_CONFIG.CLUSTER, STITCH_CONFIG.DB, STITCH_CONFIG.METADATA);
+// Configuration
+const APP_ID = "example-<random_value>";
+const CLUSTER = "mongodb-atlas";
+const DB = "example";
+const ENDPOINT = "https://stitch.mongodb.com";
+const METADATA = "metadata"; // Optional collection name to handle user metadata (I.E. name, dob, profile_image, etc)
+
+// Connect to MongoDB Stitch app
+stitching.connect(APP_ID, ENDPOINT, CLUSTER, DB, METADATA);
 ```
 
 After you connect your `Stitching`, you can access auth (`Stitching Authentication`), client (`MongoDB Stitch Client`), db (`MongoDB Stitch DB`) and providers (enum).
@@ -125,6 +126,7 @@ You can use providers to authorize users to use your app. To enable a provider, 
 ```js
 const stitching = require("stitching");
 
+// Authenticate using Facebook
 stitching.auth
     .authenticate(stitching.providers.Facebook)
     .catch(console.error);
@@ -137,6 +139,7 @@ After you are authenticated, you'll be redireted back to your app. Credentials w
 ```js
 const stitching = require("stitching");
 
+// Get current credentials
 stitching.auth
     .getCredentials()
     .then(console.log) // Log credentials to console
@@ -150,9 +153,11 @@ To register a new user (email/password):
 ```js
 const stitching = require("stitching");
 
+// User email/password
 const email = "email@email.com";
 const password = "Password1!";
 
+// Register a user with the given email/password
 stitching.auth
     .registerUser(email, password)
     .then(() => {
@@ -168,10 +173,11 @@ To confirm an email you need to setup `Stitching` on the `Email Confirm URL` to 
 ```js
 const stitching = require("stitching");
 
-// Logic to retrieve the Token/Token ID params from the Email Confirm URL
+// Implement your own logic to retrieve the Token/Token ID params from the Email Confirm URL
 const token = "<TOKEN>";
 const tokenId = "<TOKEN_ID>";
 
+// Confirm the email providing the Token/Token ID
 stitching.auth
     .emailConfirm(tokenId, token)
     .then(console.log)
@@ -185,8 +191,10 @@ In order to reset a password, first we need to sent a `Reset Password Email`:
 ```js
 const stitching = require("stitching");
 
+// User email
 const email = "email@email.com";
 
+// Send a password reset email
 stitching.auth
     .sendPasswordReset(email)
     .then(console.log)
@@ -198,12 +206,14 @@ After a `Reset Password Email URL` is accessed through the link provided on the 
 ```js
 const stitching = require("stitching");
 
-// Logic to retrieve the Token/Token ID params from the Reset Password Email URL
+// Implement your own logic to retrieve the Token/Token ID params from the Email Confirm URL
 const token = "<TOKEN>";
 const tokenId = "<TOKEN_ID>";
 
+// Set the new password
 const newPassword = "AnotherPassword1!";
 
+// Rest the password to the new one
 stitching.auth
     .passwordReset(tokenId, token, newPassword)
     .then(console.log)
@@ -217,9 +227,11 @@ After a registered email is confirmed, we can login:
 ```js
 const stitching = require("stitching");
 
+// User email/password
 const email = "email@email.com";
 const password = "Password1!";
 
+// Login using the given email/password
 stitching.auth
     .login(email, password)
     .then((credentials) => {
@@ -236,6 +248,7 @@ Whenever we want to logout:
 ```js
 const stitching = require("stitching");
 
+// Logout from the current session
 stitching.auth
     .logout()
     .catch(console.error);
@@ -248,11 +261,13 @@ Whenever we want to update the current user metadata:
 ```js
 const stitching = require("stitching");
 
+// Set the metadata for the current user
 const metadata = {
     name: "John Doe",
     address: "123 Abc Street"
 };
 
+// Save metadata to database
 stitching.auth
     .updateMetadata(metadata)
     .then(console.log)
