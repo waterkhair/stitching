@@ -7,13 +7,13 @@ A NodeJS module to use [MongoDB Stitch](https://www.mongodb.com/cloud/stitch) Au
   - [Support](https://www.npmjs.com/package/stitching#support)
   - [Installation](https://www.npmjs.com/package/stitching#installation)
   - [Overview](https://www.npmjs.com/package/stitching#overview)
-  - [Setting up Stitching](https://www.npmjs.com/package/stitching#setting-up-stitching)
+  - [Setting up MongoDB Stitch app](https://www.npmjs.com/package/stitching#setting-up-mongodb-stitch-app)
     - [Setting up Email/Password authentication](https://www.npmjs.com/package/stitching#setting-up-emailpassword-authentication)
     - [Creating optional metadata collection](https://www.npmjs.com/package/stitching#creating-optional-metadata-collection)
         - [Top-Level Document](https://www.npmjs.com/package/stitching#top-level-document)
-  - [Using Stitching](https://www.npmjs.com/package/stitching#using-stitching)
-    - [Connecting to MongoDB Stitch using Stitching](https://www.npmjs.com/package/stitching#connecting-to-mongodb-stitch-using-stitching)
-    - [Using provider authentication](https://www.npmjs.com/package/stitching#using-provider-authentication)
+  - [Usage](https://www.npmjs.com/package/stitching#usage)
+    - [Connecting to MongoDB Stitch app using Stitching](https://www.npmjs.com/package/stitching#connecting-to-mongodb-stitch-app-using-stitching)
+    - [Provider authentication](https://www.npmjs.com/package/stitching#provider-authentication)
     - [Register a user](https://www.npmjs.com/package/stitching#register-a-user)
         - [Confirm an email](https://www.npmjs.com/package/stitching#confirm-an-email)
         - [Reset a password](https://www.npmjs.com/package/stitching#reset-a-password)
@@ -41,7 +41,7 @@ $ npm install stitching
 
 For now, the plan is to give an easy way to manage [Authentication](https://docs.mongodb.com/stitch/authentication/) using [MongoDB Stitch](https://www.mongodb.com/cloud/stitch), but the real goal is to make everything else easier.
 
-## Setting up Stitching
+## Setting up MongoDB Stitch app
 
 Before using Stitching, you need to setup a `MongoDB Stitch` app. To get started, you can visit [Getting Started](https://docs.mongodb.com/stitch/getting-started/) page and follow the instructions. After you finish setting up a `MongoDB Stitch` app, you can use your APP ID to handle `Authentication`.
 
@@ -96,9 +96,9 @@ VALID
 
 **Note:** Email/Password authentication doesn't handle metadata out of the box. This means that after login to your MongoDB Stitch app, you don't have other information regarding the email. We need a collection to save user name, date of birth, address, etc. This is optional and we can skip this step.
 
-## Using Stitching
+## Usage
 
-### Connecting to MongoDB Stitch using Stitching
+### Connecting to MongoDB Stitch app using Stitching
 
 Before using any `Stitching` functionality, lets connect to our `MongoDB Stitch` app.
 
@@ -118,7 +118,7 @@ stitching.connect(STITCH_CONFIG.APP_ID, STITCH_CONFIG.ENDPOINT, STITCH_CONFIG.CL
 After you connect your `Stitching`, you can access auth (`Stitching Authentication`), client (`MongoDB Stitch Client`), db (`MongoDB Stitch DB`) and providers (enum).
 
 
-### Using provider authentication
+### Provider authentication
 
 You can use providers to authorize users to use your app. To enable a provider, go to Authentication -> Providers and follow the instructions for [Facebook](https://docs.mongodb.com/stitch/auth/facebook-auth/)/[Google](https://docs.mongodb.com/stitch/auth/google-auth/)/[Custom](https://docs.mongodb.com/stitch/auth/custom-auth/). After you setup a provider, you can use it as follows:
 
