@@ -17,11 +17,28 @@ A NodeJS module to use [MongoDB Stitch](https://www.mongodb.com/cloud/stitch) Au
 $ npm install stitching
 ```
 
+## Content
+
+  - [Overview](https://www.npmjs.com/package/stitching#overview)
+  - [Setting up Stitching](https://www.npmjs.com/package/stitching#setting-up-stitching)
+    - [Setting up Email/Password authentication](https://www.npmjs.com/package/stitching#setting-up-emailpassword-authentication)
+    - [Creating optional metadata collection](https://www.npmjs.com/package/stitching#creating-optional-metadata-collection)
+        - [Top-Level Document](https://www.npmjs.com/package/stitching#top-level-document)
+  - [Using Stitching](https://www.npmjs.com/package/stitching#using-stitching)
+    - [Connecting to MongoDB Stitch using Stitching](https://www.npmjs.com/package/stitching#connecting-to-mongodb-stitch-using-stitching)
+    - [Using provider authentication](https://www.npmjs.com/package/stitching#using-provider-authentication)
+    - [Register a user](https://www.npmjs.com/package/stitching#register-a-user)
+        - [Confirm an email](https://www.npmjs.com/package/stitching#confirm-an-email)
+        - [Reset a password](https://www.npmjs.com/package/stitching#reset-a-password)
+        - [Login](https://www.npmjs.com/package/stitching#login)
+        - [Logout](https://www.npmjs.com/package/stitching#logout)
+    - [Update user metadata](https://www.npmjs.com/package/stitching#update-user-metadata)
+
 ## Overview
 
 For now, the plan is to give an easy way to manage [Authentication](https://docs.mongodb.com/stitch/authentication/) using [MongoDB Stitch](https://www.mongodb.com/cloud/stitch), but the real goal is to make everything else easier.
 
-### Setting up Stitching
+## Setting up Stitching
 
 Before using Stitching, you need to setup a `MongoDB Stitch` app. To get started, you can visit [Getting Started](https://docs.mongodb.com/stitch/getting-started/) page and follow the instructions. After you finish setting up a `MongoDB Stitch` app, you can use your APP ID to handle `Authentication`.
 
@@ -44,7 +61,8 @@ Inside MongoDB Stitch, go to your Atlas Cluster and create a new collection:
 After you created your collection, you need to set the next `Field Rules`:
 
 #### Top-Level Document
-READ (Only owner of a document can read it)
+
+READ (Only the owner of a document can read it)
 ```json
 {
   "owner_id": "%%user.id"
@@ -67,6 +85,7 @@ WRITE (Anyone can create a new document, but only the owner of a document can wr
 ```
 
 #### owner_id
+
 VALID
 ```json
 "%%user.id"
@@ -74,7 +93,11 @@ VALID
 
 **Note:** Email/Password authentication doesn't handle metadata out of the box. This means that after login to your MongoDB Stitch app, you don't have other information regarding the email. We need a collection to save user name, date of birth, address, etc. This is optional and we can skip this step.
 
+## Using Stitching
+
 ### Connecting to MongoDB Stitch using Stitching
+
+Before using any `Stitching` functionality, lets connect to our `MongoDB Stitch` app.
 
 ```js
 const STITCH_CONFIG = {
@@ -135,7 +158,7 @@ stitching.auth
     .catch(console.error);
 ```
 
-### Confirm an email
+#### Confirm an email
 
 To confirm an email you need to setup `Stitching` on the `Email Confirm URL` to receive a Token/Token ID pair.
 
@@ -152,7 +175,7 @@ stitching.auth
     .catch(console.error);
 ```
 
-### Reset a password
+#### Reset a password
 
 In order to reset a password, first we need to sent a `Reset Password Email`:
 
@@ -184,7 +207,7 @@ stitching.auth
     .catch(console.error);
 ```
 
-### Login
+#### Login
 
 After a registered email is confirmed, we can login:
 
@@ -203,7 +226,7 @@ stitching.auth
     .catch(console.error);
 ```
 
-### Logout
+#### Logout
 
 Whenever we want to logout:
 
