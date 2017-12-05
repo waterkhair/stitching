@@ -1,6 +1,26 @@
 # Stitching
 A NodeJS module to use [MongoDB Stitch](https://www.mongodb.com/cloud/stitch) Authentication in an easy way.
 
+## Content
+
+  - [Documentation](https://www.npmjs.com/package/stitching#documentation)
+  - [Support](https://www.npmjs.com/package/stitching#support)
+  - [Installation](https://www.npmjs.com/package/stitching#installation)
+  - [Overview](https://www.npmjs.com/package/stitching#overview)
+  - [Setting up Stitching](https://www.npmjs.com/package/stitching#setting-up-stitching)
+    - [Setting up Email/Password authentication](https://www.npmjs.com/package/stitching#setting-up-emailpassword-authentication)
+    - [Creating optional metadata collection](https://www.npmjs.com/package/stitching#creating-optional-metadata-collection)
+        - [Top-Level Document](https://www.npmjs.com/package/stitching#top-level-document)
+  - [Using Stitching](https://www.npmjs.com/package/stitching#using-stitching)
+    - [Connecting to MongoDB Stitch using Stitching](https://www.npmjs.com/package/stitching#connecting-to-mongodb-stitch-using-stitching)
+    - [Using provider authentication](https://www.npmjs.com/package/stitching#using-provider-authentication)
+    - [Register a user](https://www.npmjs.com/package/stitching#register-a-user)
+        - [Confirm an email](https://www.npmjs.com/package/stitching#confirm-an-email)
+        - [Reset a password](https://www.npmjs.com/package/stitching#reset-a-password)
+        - [Login](https://www.npmjs.com/package/stitching#login)
+        - [Logout](https://www.npmjs.com/package/stitching#logout)
+    - [Update user metadata](https://www.npmjs.com/package/stitching#update-user-metadata)
+
 ## Documentation
 
 - [StitchingJS.com](http://stitchingjs.com/)
@@ -16,23 +36,6 @@ A NodeJS module to use [MongoDB Stitch](https://www.mongodb.com/cloud/stitch) Au
 ```sh
 $ npm install stitching
 ```
-
-## Content
-
-  - [Overview](https://www.npmjs.com/package/stitching#overview)
-  - [Setting up Stitching](https://www.npmjs.com/package/stitching#setting-up-stitching)
-    - [Setting up Email/Password authentication](https://www.npmjs.com/package/stitching#setting-up-emailpassword-authentication)
-    - [Creating optional metadata collection](https://www.npmjs.com/package/stitching#creating-optional-metadata-collection)
-        - [Top-Level Document](https://www.npmjs.com/package/stitching#top-level-document)
-  - [Using Stitching](https://www.npmjs.com/package/stitching#using-stitching)
-    - [Connecting to MongoDB Stitch using Stitching](https://www.npmjs.com/package/stitching#connecting-to-mongodb-stitch-using-stitching)
-    - [Using provider authentication](https://www.npmjs.com/package/stitching#using-provider-authentication)
-    - [Register a user](https://www.npmjs.com/package/stitching#register-a-user)
-        - [Confirm an email](https://www.npmjs.com/package/stitching#confirm-an-email)
-        - [Reset a password](https://www.npmjs.com/package/stitching#reset-a-password)
-        - [Login](https://www.npmjs.com/package/stitching#login)
-        - [Logout](https://www.npmjs.com/package/stitching#logout)
-    - [Update user metadata](https://www.npmjs.com/package/stitching#update-user-metadata)
 
 ## Overview
 
