@@ -31,9 +31,7 @@ const MESSAGES = {
 };
 const PROVIDERS = {
     Facebook: "facebook",
-    Google: "google",
-    Twitter: "twitter",
-    UserPass: "userpass"
+    Google: "google"
 };
 
 // Helpers
@@ -123,17 +121,13 @@ export const auth = {
     authenticate: (provider) => isInitialized(new Promise((resolve, reject) => {
         client
             .authenticate(provider)
-            .then(() => {
-                getCredentials()
-                    .then(resolve)
-                    .catch(reject);
-            })
+            .then(resolve)
             .catch(reject);
     })),
     emailConfirm: (tokenId, token) => isInitialized(new Promise((resolve, reject) => {
         if (token && tokenId) {
             client.auth
-                .provider(PROVIDERS.UserPass)
+                .provider("userpass")
                 .emailConfirm(tokenId, token)
                 .then(() => {
                     resolve(MESSAGES.AUTH.EMAIL_CONFIRMED);
@@ -170,7 +164,7 @@ export const auth = {
     passwordReset: (tokenId, token, newPassword) => isInitialized(new Promise((resolve, reject) => {
         if (newPassword) {
             client.auth
-                .provider(PROVIDERS.UserPass)
+                .provider("userpass")
                 .passwordReset(tokenId, token, newPassword)
                 .then(() => {
                     resolve(MESSAGES.AUTH.PASSWORD_RESETED);
@@ -190,7 +184,7 @@ export const auth = {
     })),
     sendPasswordReset: (email) => isInitialized(new Promise((resolve, reject) => {
         client.auth
-            .provider(PROVIDERS.UserPass)
+            .provider("userpass")
             .sendPasswordReset(email)
             .then(() => {
                 resolve(`${MESSAGES.AUTH.EMAIL_SENT_TO} ${email}`);

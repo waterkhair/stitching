@@ -44,13 +44,13 @@ Inside MongoDB Stitch, go to your Atlas Cluster and create a new collection:
 After you created your collection, you need to set the next `Field Rules`:
 
 #### Top-Level Document
-READ
+READ (Only owner of a document can read it)
 ```json
 {
   "owner_id": "%%user.id"
 }
 ```
-WRITE
+WRITE (Anyone can create a new document, but only the owner of a document can write to it)
 ```json
 {
   "%or": [
@@ -90,6 +90,32 @@ stitching.connect(STITCH_CONFIG.APP_ID, STITCH_CONFIG.ENDPOINT, STITCH_CONFIG.CL
 ```
 
 After you connect your `Stitching`, you can access auth (`Stitching Authentication`), client (`MongoDB Stitch Client`), db (`MongoDB Stitch DB`) and providers (enum).
+
+
+### Using provider authentication
+
+You can use providers to authorize users to use your app. To enable a provider, go to Authentication -> Providers and follow the instructions for [Facebook](https://docs.mongodb.com/stitch/auth/facebook-auth/)/[Google](https://docs.mongodb.com/stitch/auth/google-auth/)/[Custom](https://docs.mongodb.com/stitch/auth/custom-auth/). After you setup a provider, you can use it as follows:
+
+```js
+const stitching = require("stitching");
+
+stitching.auth
+    .authenticate(stitching.providers.Facebook)
+    .catch(console.error);
+```
+
+**Note:** After invoking `authentication`, you'll be redirected to Facebook where the user needs to grant permissions.
+
+After you are authenticated, you'll be redireted back to your app. Credentials will be available through stitching.auth.getCredentials:
+
+```js
+const stitching = require("stitching");
+
+stitching.auth
+    .getCredentials()
+    .then(console.log) // Log credentials to console
+    .catch(console.error);
+```
 
 ### Register a user
 
