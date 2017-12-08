@@ -20,6 +20,7 @@
   "license": "ISC",
   "homepage": "https://github.com/waterkhair/stitching",
   "dependencies": {
+    "mongodb-extjson": "2.0.0",
     "mongodb-stitch": "2.2.0"
   },
   "devDependencies": {
