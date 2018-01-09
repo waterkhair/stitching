@@ -14,6 +14,7 @@ const MESSAGES = {
         EMAIL_CONFIRMED: "Email confirmed",
         EMAIL_SENT_TO: "Email sent to",
         INVALID_PASSWORD: "Invalid password",
+        LOGOUT: "You have been logged out",
         METADATA_DOES_NOT_EXISTS: "Metadata does not exists",
         METADATA_UPDATED: "Metadata updated",
         NO_METADATA_COLLECTION: "No metadata collection was provided",
@@ -157,7 +158,7 @@ export const auth = {
             .then(() => {
                 authenticated = false;
                 credentials = null;
-                resolve();
+                resolve(MESSAGES.AUTH.LOGOUT);
             })
             .catch(reject);
     }))),
